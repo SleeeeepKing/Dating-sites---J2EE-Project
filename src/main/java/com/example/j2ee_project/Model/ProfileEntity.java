@@ -13,7 +13,7 @@ public class ProfileEntity {
     private Double weight;
     private Integer height;
     private Date dataOfBrith;
-    private Object education;
+    private String education;
     private String introduction;
     private String maritalStatus;
     private String city;
@@ -80,11 +80,11 @@ public class ProfileEntity {
 
     @Basic
     @Column(name = "Education")
-    public Object getEducation() {
+    public String getEducation() {
         return education;
     }
 
-    public void setEducation(Object education) {
+    public void setEducation(String education) {
         this.education = education;
     }
 
