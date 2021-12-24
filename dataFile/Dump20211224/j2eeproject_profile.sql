@@ -29,7 +29,7 @@ CREATE TABLE `profile` (
   `Weight` float DEFAULT NULL,
   `Height` int DEFAULT NULL,
   `DataOfBrith` date DEFAULT NULL,
-  `Education` tinytext,
+  `Education` longtext,
   `Introduction` longtext,
   `MaritalStatus` varchar(45) DEFAULT NULL,
   `City` varchar(45) DEFAULT NULL,
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-24 11:29:27
+-- Dump completed on 2021-12-24 19:27:02
