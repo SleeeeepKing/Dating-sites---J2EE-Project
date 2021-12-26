@@ -26,15 +26,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
       <div class="navbar-inner navbar-inner_1">
         <div class="container">
+			 <span class="navbar-text" style="font-size: 16px;color:white"><p th:if="${session.login}" th:text="${session.userName}"></p>
+				  <p th:unless="${session.login}">UnknownUser</p></span>
            <div class="navigation">
              <nav id="colorNav">
 			   <ul>
 				<li class="green">
 					<a href="#" class="icon-home"></a>
 					<ul>
-						<li><a th:href="@{/ToLogin}">Login</a></li>
-						<li><a th:href="@{/ToRegister}">Register</a></li>
-						<li><a th:href="@{/Logout}">Logout</a></li>
+						<li><a th:unless="${session.login}" th:href="@{/ToLogin}">Login</a></li>
+						<li><a th:unless="${session.login}" th:href="@{/ToRegister}">Register</a></li>
+						<li><a th:if="${session.login}" th:href="@{/Logout}">Logout</a></li>
 					</ul>
 				</li>
 			   </ul>

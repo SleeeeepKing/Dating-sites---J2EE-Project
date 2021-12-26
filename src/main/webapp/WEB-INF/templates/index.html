@@ -15,8 +15,9 @@
 <link href='http://fonts.useso.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.useso.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 <!----font-Awesome----->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!----font-Awesome----->
+<link href="css/font-awesome.css" rel="stylesheet">
+	<!--<script src="https://kit.fontawesome.com/yourcode.js"></script>
+--font-Awesome----->
 
 </head>
 <body>
@@ -25,20 +26,31 @@
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
       <div class="navbar-inner">
         <div class="container">
-           <div class="navigation">
-             <nav id="colorNav">
-			   <ul>
-				<li class="green">
-					<a href="#" class="icon-home"></a>
+
+				  <span class="navbar-text" style="font-size: 16px;color:white"><p th:if="${session.login}" th:text="${session.userName}"></p>
+				  <p th:unless="${session.login}">UnknownUser</p></span>
+
+
+
+			<div class="navigation">
+
+				<nav id="colorNav">
+
 					<ul>
-						<li><a th:href="@{/ToLogin}">Login</a></li>
-					    <li><a th:href="@{/ToRegister}">Register</a></li>
-					    <li><a th:href="@{/Logout}">Logout</a></li>
+
+						<li class="green">
+							<a href="#" class="fas fa-bars">
+
+							</a>
+							<ul>
+								<li><a th:unless="${session.login}" th:href="@{/ToLogin}">Login</a></li>
+								<li><a th:unless="${session.login}" th:href="@{/ToRegister}">Register</a></li>
+								<li><a th:if="${session.login}" th:href="@{/Logout}">Logout</a></li>
+							</ul>
+						</li>
 					</ul>
-				</li>
-			   </ul>
-             </nav>
-           </div>
+				</nav>
+			</div>
            <a class="brand" th:href="@{/Home}"><img src="images/logo.png" alt="logo"></a>
            <div class="pull-right">
           	<nav class="navbar nav_bottom" role="navigation">
@@ -58,10 +70,15 @@
 		            <li><a th:href="@{/Home}">Home</a></li>
 					<li><a th:href="@{/Interested}">Interested</a></li>
 		        </ul>
+
 		     </div><!-- /.navbar-collapse -->
+
+
+
 		    </nav>
 		   </div> <!-- end pull-right -->
           <div class="clearfix"> </div>
+
         </div> <!-- end container -->
       </div> <!-- end navbar-inner -->
     </div> <!-- end navbar-inverse-blue -->
