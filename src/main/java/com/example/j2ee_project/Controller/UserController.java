@@ -1,7 +1,7 @@
 package com.example.j2ee_project.Controller;
 
 import com.example.j2ee_project.Model.UserEntity;
-import org.springframework.http.HttpCookie;
+
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +22,11 @@ public class UserController {
         userI.setUserName("Dusan");
         userI.setUserName("123");
         System.out.println(userEntity);
-
+        if(userEntity.getPassword()==userI.getPassword()){
             HttpSession httpSession= request.getSession();
 
             httpSession.setAttribute("userName",userEntity.getUserName());
-            httpSession.setAttribute("login",true);
+            httpSession.setAttribute("login",true);}
 
         return "index";
     }
@@ -35,7 +35,12 @@ public class UserController {
         return "register";
     }
     @RequestMapping("/Register")
-    public String Register(UserEntity userEntity){
+    public String Register(UserEntity userEntity,HttpServletRequest request){
+        HttpSession httpSession= request.getSession();
+
+        httpSession.setAttribute("userName",userEntity.getUserName());
+        httpSession.setAttribute("login",true);
+
         return "index";
     }
     @RequestMapping("/Logout")
