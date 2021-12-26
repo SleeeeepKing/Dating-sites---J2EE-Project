@@ -39,15 +39,21 @@ $(document).ready(function(){
     <!--<div class="navbar navbar-inverse-blue navbar-fixed-top">-->
       <div class="navbar-inner navbar-inner_1">
         <div class="container">
+			 <span class="navbar-text" style="font-size: 16px;color:white"><p th:if="${session.login}" th:text="${session.userName}"></p>
+				  <p th:unless="${session.login}">UnknownUser</p></span>
            <div class="navigation">
              <nav id="colorNav">
 			   <ul>
 				<li class="green">
-				  <a href="#" class="icon-home"></a>
+				  <a href="#" class="icon-home">
+					  <p th:if="${session.login}" th:text="${session.userName}"></p>
+
+				  </a>
+
 				  <ul>
-					<li><a th:href="@{/ToLogin}">Login</a></li>
-					<li><a th:href="@{/ToRegister}">Register</a></li>
-					<li><a th:href="@{/Logout}">Logout</a></li>
+					  <li><a th:unless="${session.login}" th:href="@{/ToLogin}">Login</a></li>
+					  <li><a th:unless="${session.login}" th:href="@{/ToRegister}">Register</a></li>
+					  <li><a th:if="${session.login}" th:href="@{/Logout}">Logout</a></li>
 				  </ul>
 				</li>
 			   </ul>
@@ -92,17 +98,17 @@ $(document).ready(function(){
    </div>
    <div class="services">
    	  <div class="col-sm-6 login_left">
-	   <form th:action="@{/Login}" method="post">
+	   <form th:action="@{/Login}" method="get">
   	    <div class="form-item form-type-textfield form-item-name">
 	      <label for="edit-name">Username <span class="form-required" title="This field is required.">*</span></label>
-	      <input type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form-text required">
+	      <input type="text" id="edit-name" name="userName" value="" size="60" maxlength="60" class="form-text required">
 	    </div>
 	    <div class="form-item form-type-password form-item-pass">
 	      <label for="edit-pass">Password <span class="form-required" title="This field is required.">*</span></label>
-	      <input type="password" id="edit-pass" name="pass" size="60" maxlength="128" class="form-text required">
+	      <input type="password" id="edit-pass" name="password" size="60" maxlength="128" class="form-text required">
 	    </div>
 	    <div class="form-actions">
-	    	<input type="submit" id="edit-submit" name="op" value="Log in" class="btn_1 submit">
+	    	<input type="submit" id="edit-submit" name="op" value="Login" class="btn_1 submit">
 	    </div>
 	   </form>
 	  </div>
