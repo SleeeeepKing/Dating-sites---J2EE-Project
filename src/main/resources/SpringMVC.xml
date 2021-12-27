@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.1.xsd">
-    <context:component-scan base-package="com.example.j2ee_project.Controller"></context:component-scan>
+    <context:component-scan base-package="com.example.j2ee_project"></context:component-scan>
     <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
         <property name="order" value="1"></property>
         <property name="characterEncoding" value="UTF-8"></property>
@@ -32,9 +32,18 @@
         </property>
     </bean>
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
-    <mvc:resources mapping="fonts/**" location="/font/"></mvc:resources>
+    <mvc:resources mapping="fonts/**" location="/fonts/"></mvc:resources>
+    <mvc:resources mapping="fonts/**.ttf" location="/fonts/"></mvc:resources>
+    <mvc:resources mapping="fonts/**.woff" location="/fonts/"></mvc:resources>
+    <mvc:resources mapping="fonts/**.woff2" location="/fonts/"></mvc:resources>
     <mvc:resources mapping="js/**" location="/js/"></mvc:resources>
     <mvc:resources mapping="css/**" location="/css/"></mvc:resources>
     <mvc:resources mapping="images/**" location="/images/"></mvc:resources>
     <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:view-controller path="/Home" view-name="index"></mvc:view-controller>
+    <mvc:view-controller path="/ToLogin" view-name="login"></mvc:view-controller>
+    <mvc:view-controller path="/ToRegister" view-name="register"></mvc:view-controller>
+    <mvc:default-servlet-handler/>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 </beans>

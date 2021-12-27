@@ -89,7 +89,7 @@ $(document).ready(function(){
      <ul>
         <a th:href="@{/Home}"><i class="fa fa-home home_1"></i></a>
         <span class="divider">&nbsp;|&nbsp;</span>
-        <li class="current-page">Regular Search</li>
+        <li class="current-page">Creat Profile</li>
      </ul>
    </div>
    <!--<script type="text/javascript">
@@ -101,211 +101,118 @@ $(document).ready(function(){
     });
    </script>-->
 <div class="col-md-9 search_left">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form_but1">
+            <label class="col-sm-5 control-lable1" for="edit-intro">Photo: </label>
+            <div class="col-sm-7 form_radios">
+                <div class="select-block1">
+                    <input type="file"  name="photo">
+                    <input type="submit"  value="Upload">
+                </div>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </form>
   <form th:action="@{/CreateProfile}" method="post">
-   <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Gender : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="radio" class="radio_1" /> Male &nbsp;&nbsp;
-		<input type="radio" class="radio_1" checked="checked" /> Female
-		
-		<!--<hr />
-		<p id="sel"></p><br />
-		<input id="btnRadio" type="button" value="Get Selected Value" />-->
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-name">Name: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <input type="text" id="edit-name" name="name" value="" size="60" maxlength="60" >
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
+      </div>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-height">Height: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <input type="text" id="edit-height" name="height" value="" size="60" maxlength="60" >
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
+      </div>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-weight">Weight: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <input type="text" id="edit-weight" name="weight" value="" size="60" maxlength="60" >
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
+      </div>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-birthday">Birthday: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <input type="text" id="edit-birthday" name="DataOfBirth" value="" size="60" maxlength="60" >
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
+      </div>
+
+
+  <div class="form_but1">
+	<label class="col-sm-5 control-lable1" for="maritalStatus">Marital Status : </label>
+	<div class="col-sm-7 form_radios" id="maritalStatus">
+		<input type="radio" name="maritalStatus" class="radio_1" value="Single" checked="checked" /> Single &nbsp;&nbsp;
+		<input type="radio" name="maritalStatus" class="radio_1" value="Divorced" /> Divorced &nbsp;&nbsp;
+		<input type="radio" name="maritalStatus" class="radio_1" value="Widowed" /> Widowed &nbsp;&nbsp;
+		<input type="radio" name="maritalStatus" class="radio_1" value="Separated" /> Separated &nbsp;&nbsp;
+		<input type="radio" name="maritalStatus" class="radio_1" value="Any" /> Any
 	</div>
 	<div class="clearfix"> </div>
   </div>
+
   <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Marital Status : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> Single &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> Divorced &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Widowed &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Separated &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" value="Cheese" /> Any
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Country : </label>
+    <label class="col-sm-5 control-lable1" for="city">City : </label>
     <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">Country</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
+      <div class="select-block1" id="city">
+        <select name="City">
+
+            <option  value="">Paris</option>
+            <option  value="">Lyon</option>
+            <option  value="">Nice</option>
+            <option  value="">Toulouse</option>
+
+
         </select>
       </div>
     </div>
     <div class="clearfix"> </div>
   </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">District / City : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">District / City</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
-        </select>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-edu">Education: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <textarea type="text" id="edit-edu" name="Education" value="" rows="5" cols="61"></textarea>
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
       </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">State : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">State</option>
-            <option value="">Japan</option>
-            <option value="">Kenya</option>
-            <option value="">Dubai</option>
-            <option value="">Italy</option>
-            <option value="">Greece</option> 
-            <option value="">Iceland</option> 
-            <option value="">China</option> 
-            <option value="">Doha</option> 
-            <option value="">Irland</option> 
-            <option value="">Srilanka</option> 
-            <option value="">Russia</option> 
-            <option value="">Hong Kong</option> 
-            <option value="">Germany</option>
-            <option value="">Canada</option>  
-            <option value="">Mexico</option> 
-            <option value="">Nepal</option>
-            <option value="">Norway</option> 
-            <option value="">Oman</option>
-            <option value="">Pakistan</option>  
-            <option value="">Kuwait</option> 
-            <option value="">Indonesia</option>  
-            <option value="">Spain</option>
-            <option value="">Thailand</option>  
-            <option value="">Saudi Arabia</option> 
-            <option value="">Poland</option> 
-        </select>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-intro">Introduction: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <textarea type="text" id="edit-intro" name="Introduction" value="" rows="5" cols="61"></textarea>
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
       </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Religion : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">Hindu</option>
-            <option value="">Sikh</option>
-            <option value="">Jain-All</option>
-            <option value="">Jain-Digambar</option>
-            <option value="">Jain-Others</option>
-            <option value="">Muslim-All</option> 
-            <option value="">Muslim-Shia</option> 
-            <option value="">Muslim-Sunni</option> 
-            <option value="">Muslim-Others</option> 
-            <option value="">Christian-All</option> 
-            <option value="">Christian-Catholic</option> 
-            <option value="">Jewish</option> 
-            <option value="">Inter-Religion</option> 
-        </select>
+
+
+
+      <div class="form-actions">
+          <input type="submit" id="edit-submit" name="op" value="Creat" class="btn_1 submit">
       </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-    <label class="col-sm-5 control-lable1" for="sex">Mother Tongue : </label>
-    <div class="col-sm-7 form_radios">
-      <div class="select-block1">
-        <select>
-            <option value="">English</option>
-            <option value="">French</option>
-            <option value="">Telugu</option>
-            <option value="">Bengali</option>
-            <option value="">Bihari</option>
-            <option value="">Hindi</option> 
-            <option value="">Koshali</option> 
-            <option value="">Khasi</option> 
-            <option value="">Tamil</option> 
-            <option value="">Urdu</option> 
-            <option value="">Manipuri</option> 
-        </select>
-      </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Show Profile : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> with Photo &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> with Horoscope
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Don't Show : </label>
-	<div class="col-sm-7 form_radios">
-		<input type="checkbox" class="radio_1" /> Ignored Profiles &nbsp;&nbsp;
-		<input type="checkbox" class="radio_1" checked="checked" /> Profiles already Contacted
-	</div>
-	<div class="clearfix"> </div>
-  </div>
-  <div class="form_but1">
-	<label class="col-sm-5 control-lable1" for="sex">Age : </label>
-	<div class="col-sm-7 form_radios">
-	  <div class="col-sm-5 input-group1">
-        <input class="form-control has-dark-background" name="28" id="slider-name" placeholder="28" type="text" required="">
-      </div>
-      <div class="col-sm-5 input-group1">
-        <input class="form-control has-dark-background" name="40" id="slider-name" placeholder="40" type="text" required="">
-      </div>
-      <div class="clearfix"> </div>
-	</div>
-	<div class="clearfix"> </div>
-  </div>
+
  </form>
 
 

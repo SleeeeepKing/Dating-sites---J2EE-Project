@@ -11,46 +11,35 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
-    @RequestMapping("/ToLogin")
-    public String ToLogin(){
-        return "login";
-    }
+
     @RequestMapping("/Login")
-    public String Login(UserEntity userEntity, HttpServletRequest request){
+    public String Login(UserEntity userEntity, HttpSession session){
 
         UserEntity userI=new UserEntity();
         userI.setUserName("Dusan");
-        userI.setUserName("123");
+        userI.setPassword("123");
         System.out.println(userEntity);
-        if(userEntity.getPassword()==userI.getPassword()){
-            HttpSession httpSession= request.getSession();
+        if(userEntity.getPassword().equals(userI.getPassword())){
+            session.setAttribute("userName",userEntity.getUserName());
+            session.setAttribute("login",true);}
 
-            httpSession.setAttribute("userName",userEntity.getUserName());
-            httpSession.setAttribute("login",true);}
+        return "redirect:/Home";
+    }
 
-        return "index";
-    }
-    @RequestMapping("/ToRegister")
-    public String ToRegister(){
-        return "register";
-    }
     @RequestMapping("/Register")
-    public String Register(UserEntity userEntity,HttpServletRequest request){
-        HttpSession httpSession= request.getSession();
+    public String Register(UserEntity userEntity,HttpSession session){
 
-        httpSession.setAttribute("userName",userEntity.getUserName());
-        httpSession.setAttribute("login",true);
 
-        return "index";
+        session.setAttribute("userName",userEntity.getUserName());
+        session.setAttribute("login",true);
+
+        return "redirect:/Home";
     }
     @RequestMapping("/Logout")
-    public String Logout( HttpServletRequest request){
-            request.getSession().removeAttribute("login");
-            request.getSession().removeAttribute("userName");
-        return "index";
+    public String Logout( HttpSession session){
+            session.removeAttribute("login");
+            session.removeAttribute("userName");
+        return "redirect:/Home";
     }
-    @RequestMapping("/Home")
-    public String Home(){
-        return "index";
-    }
+
 }
