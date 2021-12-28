@@ -89,7 +89,9 @@ $(document).ready(function(){
      <ul>
         <a th:href="@{/Home}"><i class="fa fa-home home_1"></i></a>
         <span class="divider">&nbsp;|&nbsp;</span>
-        <li class="current-page">Creat Profile</li>
+        <li th:unless="${session.isModify}" class="current-page">Creat Profile</li>
+
+         <li  th:if="${session.isModify}" class="current-page">Modify Profile</li>
      </ul>
    </div>
    <!--<script type="text/javascript">
@@ -101,7 +103,7 @@ $(document).ready(function(){
     });
    </script>-->
 <div class="col-md-9 search_left">
-    <form method="post" enctype="multipart/form-data">
+    <form th:action="@{/uploadPhoto}" method="post" enctype="multipart/form-data">
         <div class="form_but1">
             <label class="col-sm-5 control-lable1" for="edit-intro">Photo: </label>
             <div class="col-sm-7 form_radios">
@@ -119,7 +121,19 @@ $(document).ready(function(){
           <label class="col-sm-5 control-lable1" for="edit-name">Name: </label>
           <div class="col-sm-7 form_radios">
               <div class="select-block1">
-                  <input type="text" id="edit-name" name="name" value="" size="60" maxlength="60" >
+                  <input th:unless="${session.isModify}" type="text" id="creat-name" name="name" value="" size="60" maxlength="60" >
+                  <input th:if="${session.isModify}" type="text" id="edit-name" name="name" th:value="${profileEntity.name}" size="60" maxlength="60" >
+              </div>
+          </div>
+
+          <div class="clearfix"> </div>
+      </div>
+      <div class="form_but1">
+          <label class="col-sm-5 control-lable1" for="edit-birthday">Age: </label>
+          <div class="col-sm-7 form_radios">
+              <div class="select-block1">
+                  <input th:unless="${session.isModify}" type="text" id="edit-birthday" name="age" value="" size="60" maxlength="60" >
+                  <input th:if="${session.isModify}" type="text" id="edit-birthday" name="age" th:value="${profileEntity.age}" size="60" maxlength="60" >
               </div>
           </div>
 
@@ -129,7 +143,8 @@ $(document).ready(function(){
           <label class="col-sm-5 control-lable1" for="edit-height">Height: </label>
           <div class="col-sm-7 form_radios">
               <div class="select-block1">
-                  <input type="text" id="edit-height" name="height" value="" size="60" maxlength="60" >
+                  <input th:unless="${session.isModify}" type="text" id="edit-height" name="height" value="" size="56" maxlength="50" >CM
+                  <input th:if="${session.isModify}" type="text" id="edit-height" name="height" th:value="${profileEntity.height}" size="56" maxlength="50" >CM
               </div>
           </div>
 
@@ -139,22 +154,14 @@ $(document).ready(function(){
           <label class="col-sm-5 control-lable1" for="edit-weight">Weight: </label>
           <div class="col-sm-7 form_radios">
               <div class="select-block1">
-                  <input type="text" id="edit-weight" name="weight" value="" size="60" maxlength="60" >
+                  <input th:unless="${session.isModify}" type="text" id="edit-weight" name="weight" value="" size="56" maxlength="50" >KG
+                  <input th:if="${session.isModify}" type="text" id="edit-weight" name="weight" th:value="${profileEntity.weight}" size="56" maxlength="50" >KG
               </div>
           </div>
 
           <div class="clearfix"> </div>
       </div>
-      <div class="form_but1">
-          <label class="col-sm-5 control-lable1" for="edit-birthday">Birthday: </label>
-          <div class="col-sm-7 form_radios">
-              <div class="select-block1">
-                  <input type="text" id="edit-birthday" name="DataOfBirth" value="" size="60" maxlength="60" >
-              </div>
-          </div>
 
-          <div class="clearfix"> </div>
-      </div>
 
 
   <div class="form_but1">
@@ -173,12 +180,12 @@ $(document).ready(function(){
     <label class="col-sm-5 control-lable1" for="city">City : </label>
     <div class="col-sm-7 form_radios">
       <div class="select-block1" id="city">
-        <select name="City">
+        <select name="city" >
 
-            <option  value="">Paris</option>
-            <option  value="">Lyon</option>
-            <option  value="">Nice</option>
-            <option  value="">Toulouse</option>
+            <option value="Paris">Paris</option>
+            <option value="Lyon">Lyon</option>
+            <option value="Nice">Nice</option>
+            <option value="Toulouse">Toulouse</option>
 
 
         </select>
@@ -190,7 +197,8 @@ $(document).ready(function(){
           <label class="col-sm-5 control-lable1" for="edit-edu">Education: </label>
           <div class="col-sm-7 form_radios">
               <div class="select-block1">
-                  <textarea type="text" id="edit-edu" name="Education" value="" rows="5" cols="61"></textarea>
+                  <textarea th:unless="${session.isModify}" type="text" id="edit-edu" name="Education" value="" rows="5" cols="61"></textarea>
+                  <textarea th:if="${session.isModify}" type="text" id="edit-edu" name="Education" th:field ="${profileEntity.Education}" rows="5" cols="61"></textarea>
               </div>
           </div>
 
@@ -200,7 +208,9 @@ $(document).ready(function(){
           <label class="col-sm-5 control-lable1" for="edit-intro">Introduction: </label>
           <div class="col-sm-7 form_radios">
               <div class="select-block1">
-                  <textarea type="text" id="edit-intro" name="Introduction" value="" rows="5" cols="61"></textarea>
+
+                  <textarea th:unless="${session.isModify}" type="text" id="edit-intro" name="Introduction" value="" rows="5" cols="61"></textarea>
+                  <textarea th:if="${session.isModify}" type="text" id="edit-intro" name="Introduction" th:field="${profileEntity.Introduction}" rows="5" cols="61"></textarea>
               </div>
           </div>
 
@@ -214,6 +224,9 @@ $(document).ready(function(){
       </div>
 
  </form>
+</div>
+  </div>
+</div>
 
 
 <div class="footer">
@@ -227,7 +240,7 @@ $(document).ready(function(){
 			<p>Copyright &copy; 2015.Company name All rights reserved.</p>
 		</div>
 	</div>
-
 </div>
+
 </body>
 </html>	

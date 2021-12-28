@@ -21,7 +21,11 @@ public class UserController {
         System.out.println(userEntity);
         if(userEntity.getPassword().equals(userI.getPassword())){
             session.setAttribute("userName",userEntity.getUserName());
-            session.setAttribute("login",true);}
+            session.setAttribute("login",true);
+        session.setAttribute("hasPro",true);
+        //调用service判断是否有资料来决定该值
+            }
+
 
         return "redirect:/Home";
     }
@@ -39,6 +43,7 @@ public class UserController {
     public String Logout( HttpSession session){
             session.removeAttribute("login");
             session.removeAttribute("userName");
+        session.setAttribute("hasPro",false);
         return "redirect:/Home";
     }
 

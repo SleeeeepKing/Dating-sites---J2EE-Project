@@ -89,7 +89,8 @@
   <div class="container">
     <div class="banner_info">
       <h3>Millions of verified Members</h3>
-      <a th:href="@{/ToCreateProfile}" class="hvr-shutter-out-horizontal">Create your Profile</a>
+      <a th:unless="${session.hasPro}" th:href="@{/ToCreateProfile}" class="hvr-shutter-out-horizontal">Create your Profile</a>
+		<a th:if="${session.hasPro}" th:href="@{/ToModifierProfile}" class="hvr-shutter-out-horizontal">Modify your Profile</a>
     </div>
   </div>
   <div class="profile_search">

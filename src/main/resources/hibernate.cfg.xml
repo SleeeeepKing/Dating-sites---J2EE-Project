@@ -6,7 +6,7 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://localhost:3306/j2eeproject</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <mapping class="com.example.j2ee_project.Model.ProfileEntity"/>
+      <mapping class="com.example.j2ee_project.Model.ProfileEntity"/>
     <mapping class="com.example.j2ee_project.Model.RelationEntity"/>
     <mapping class="com.example.j2ee_project.Model.UserEntity"/>
     <!-- <property name="connection.username"/> -->
