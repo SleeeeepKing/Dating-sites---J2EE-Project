@@ -1,11 +1,14 @@
 package com.example.j2ee_project.Controller;
 
+import com.example.j2ee_project.Model.Condition;
 import com.example.j2ee_project.Model.ProfileEntity;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -55,6 +60,7 @@ public class ProfileController {
     @RequestMapping("/ToModifierProfile")
     public ModelAndView ModifierProfile(HttpSession session){
         ProfileEntity profileEntity=new ProfileEntity();
+
         profileEntity.setName("zd");
         profileEntity.setCity("Nice");
         profileEntity.setHeight(123);
@@ -70,8 +76,61 @@ public class ProfileController {
 
         return mav;
     }
-    @RequestMapping("/ToProfile")
-    public String ToProfile(){
-        return "view_profile";
+    @RequestMapping("/requestProList")
+    public ModelAndView profileEntities(HttpSession session, Condition condition){
+        List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
+       // if(session.getAttribute("list")!=null)
+         //  profileEntities=ProfileService.getProfile();
+      //  else
+        //    profileEntities=ProfileService.SearchByConditions(condition);
+
+        System.out.println(condition);
+        int i=6;
+        while (i>0)
+        {   ProfileEntity pro=new ProfileEntity();
+            pro.setIdProfile(i);
+            pro.setName("000"+i);
+            pro.setAge(i+20);
+            pro.setHeight(160+i);
+            pro.setEducation("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            pro.setIntroduction("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            pro.setPhotoPath("images/default.png");
+            pro.setCity("paris"+i);
+            pro.setMaritalStatus("Single"+i);
+            profileEntities.add(pro);
+            i--;
+        }
+
+        ModelAndView mav=new ModelAndView();
+        mav.addObject("profileEntities",profileEntities);
+        String st="123";
+        mav.addObject("st",st);
+        mav.setViewName("matches");
+        return mav;
+
+    }
+    @RequestMapping("/ToProfile/{id}")
+    public ModelAndView ToProfile(@PathVariable("id") Integer id){
+        List<ProfileEntity> profileEntities= new ArrayList<ProfileEntity>();
+        int i=6;
+        while (i>0)
+        {   ProfileEntity pro=new ProfileEntity();
+            pro.setIdProfile(i);
+            pro.setName("000"+i);
+            pro.setAge(i+20);
+            pro.setHeight(160+i);
+            pro.setEducation("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            pro.setIntroduction("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+            pro.setPhotoPath("images/default.png");
+            pro.setCity("paris"+i);
+            pro.setMaritalStatus("Single"+i);
+            profileEntities.add(pro);
+            i--;
+        }
+        ModelAndView mav=new ModelAndView();
+        mav.addObject("profile",profileEntities.get(id-1));
+        mav.setViewName("view_profile");
+
+        return mav;
     }
 }
