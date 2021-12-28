@@ -28,11 +28,11 @@ CREATE TABLE `profile` (
   `Age` int NOT NULL,
   `Weight` float DEFAULT NULL,
   `Height` int DEFAULT NULL,
-  `DataOfBrith` date DEFAULT NULL,
   `Education` longtext,
   `Introduction` longtext,
   `MaritalStatus` varchar(45) DEFAULT NULL,
   `City` varchar(45) DEFAULT NULL,
+  `photoPath` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idProfile`),
   CONSTRAINT `userId` FOREIGN KEY (`idProfile`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COMMENT='用户资料';
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-24 19:27:02
+-- Dump completed on 2021-12-28 11:20:28
