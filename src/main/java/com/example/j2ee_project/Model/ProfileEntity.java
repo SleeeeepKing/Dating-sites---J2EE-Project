@@ -1,5 +1,7 @@
 package com.example.j2ee_project.Model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -12,11 +14,11 @@ public class ProfileEntity {
     private int age;
     private Double weight;
     private Integer height;
-    private Date dataOfBrith;
     private String education;
     private String introduction;
     private String maritalStatus;
     private String city;
+    private String photoPath;
 
     @Id
     @Column(name = "idProfile")
@@ -68,15 +70,7 @@ public class ProfileEntity {
         this.height = height;
     }
 
-    @Basic
-    @Column(name = "DataOfBrith")
-    public Date getDataOfBrith() {
-        return dataOfBrith;
-    }
 
-    public void setDataOfBrith(Date dataOfBrith) {
-        this.dataOfBrith = dataOfBrith;
-    }
 
     @Basic
     @Column(name = "Education")
@@ -123,11 +117,37 @@ public class ProfileEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProfileEntity that = (ProfileEntity) o;
-        return idProfile == that.idProfile && age == that.age && Objects.equals(name, that.name) && Objects.equals(weight, that.weight) && Objects.equals(height, that.height) && Objects.equals(dataOfBrith, that.dataOfBrith) && Objects.equals(education, that.education) && Objects.equals(introduction, that.introduction) && Objects.equals(maritalStatus, that.maritalStatus) && Objects.equals(city, that.city);
+        return idProfile == that.idProfile && age == that.age && Objects.equals(name, that.name) && Objects.equals(weight, that.weight) && Objects.equals(height, that.height) && Objects.equals(education, that.education) && Objects.equals(introduction, that.introduction) && Objects.equals(maritalStatus, that.maritalStatus) && Objects.equals(city, that.city);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idProfile, name, age, weight, height, dataOfBrith, education, introduction, maritalStatus, city);
+        return Objects.hash(idProfile, name, age, weight, height,education, introduction, maritalStatus, city);
+    }
+
+    @Basic
+    @Column(name = "photoPath")
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    @Override
+    public String toString() {
+        return "ProfileEntity{" +
+                "idProfile=" + idProfile +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", education='" + education + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", maritalStatus='" + maritalStatus + '\'' +
+                ", city='" + city + '\'' +
+                ", photoPath='" + photoPath + '\'' +
+                '}';
     }
 }
