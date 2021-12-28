@@ -10,7 +10,6 @@ public class UserEntity {
     private String userName;
     private String password;
     private String email;
-    private String sex;
 
     @Id
     @Column(name = "id")
@@ -52,26 +51,16 @@ public class UserEntity {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "sex")
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return id == that.id && Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && Objects.equals(email, that.email) && Objects.equals(sex, that.sex);
+        return id == that.id && Objects.equals(userName, that.userName) && Objects.equals(password, that.password) && Objects.equals(email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, email, sex);
+        return Objects.hash(id, userName, password, email);
     }
 }

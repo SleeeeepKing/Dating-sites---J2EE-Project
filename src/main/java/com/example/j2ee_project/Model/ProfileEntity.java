@@ -19,6 +19,7 @@ public class ProfileEntity {
     private String maritalStatus;
     private String city;
     private String photoPath;
+    private String gender;
 
     @Id
     @Column(name = "idProfile")
@@ -69,8 +70,6 @@ public class ProfileEntity {
     public void setHeight(Integer height) {
         this.height = height;
     }
-
-
 
     @Basic
     @Column(name = "Education")
@@ -149,5 +148,15 @@ public class ProfileEntity {
                 ", city='" + city + '\'' +
                 ", photoPath='" + photoPath + '\'' +
                 '}';
+    }
+
+    @Basic
+    @Column(name = "gender")
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
