@@ -81,7 +81,7 @@ public class ProfileController {
                                         @RequestParam(value = "ageT",required = false,defaultValue = "0") Integer ageT,
                                         @RequestParam(value = "Status",required = false) String Status){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
-       // if(session.getAttribute("list")!=null)
+       // if(session.getAttribute("Interestedlist")!=null)
          //  profileEntities=ProfileService.getProfile();
       //  else
         //    profileEntities=ProfileService.SearchByConditions(condition);
@@ -111,8 +111,6 @@ public class ProfileController {
 
         ModelAndView mav=new ModelAndView();
         mav.addObject("profileEntities",profileEntities);
-        String st="123";
-        mav.addObject("st",st);
         mav.setViewName("matches");
         return mav;
 

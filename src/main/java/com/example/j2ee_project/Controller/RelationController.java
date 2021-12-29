@@ -4,6 +4,7 @@ import com.example.j2ee_project.Model.RelationEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,8 @@ public class RelationController {
             return "redirect:/ToLogin";
         else {
             //list searchbyidF(id)
-            //session.setAttribute(list)
+            //session.setAttribute(Interestedlist，List)
+            //session.setAttribute(by
 
         }
 
@@ -35,5 +37,12 @@ public class RelationController {
 
 
         return "redirect:/ToProfile/"+idT;
+    }
+    @RequestMapping("/ajaxtest")
+    @ResponseBody
+    public String ajaxtest(){
+
+        return "wyTest";
+
     }
 }
