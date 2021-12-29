@@ -5,10 +5,7 @@ import com.example.j2ee_project.Model.ProfileEntity;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -77,13 +74,24 @@ public class ProfileController {
         return mav;
     }
     @RequestMapping("/requestProList")
-    public ModelAndView profileEntities(HttpSession session, Condition condition){
+    public ModelAndView profileEntities(HttpSession session,
+                                        @RequestParam(value = "Gender",required = false) String Gender,
+                                        @RequestParam(value = "locate",required = false) String locate,
+                                        @RequestParam(value = "ageF",required = false,defaultValue = "0") Integer ageF,
+                                        @RequestParam(value = "ageT",required = false,defaultValue = "0") Integer ageT,
+                                        @RequestParam(value = "Status",required = false) String Status){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
        // if(session.getAttribute("list")!=null)
          //  profileEntities=ProfileService.getProfile();
       //  else
         //    profileEntities=ProfileService.SearchByConditions(condition);
 
+        Condition condition=new Condition();
+        condition.setGender(Gender);
+        condition.setLocate(locate);
+        condition.setAgeF(ageF);
+        condition.setAgeT(ageT);
+        condition.setStatus(Status);
         System.out.println(condition);
         int i=6;
         while (i>0)
