@@ -4,8 +4,19 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+//@NamedQuery(name = "User.byId", query = "SELECT e from UserEntity e where e.id=?1")
 @Table(name = "user", schema = "j2eeproject", catalog = "")
 public class UserEntity {
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     private int id;
     private String userName;
     private String password;

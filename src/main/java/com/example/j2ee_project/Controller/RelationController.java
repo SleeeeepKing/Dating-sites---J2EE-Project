@@ -23,10 +23,10 @@ public class RelationController {
 
         return "redirect:/requestProList";
     }
-    @RequestMapping("/addRelation/{idT}")
+    @RequestMapping("/changeRelation/{idT}")
     public String addRelation(@PathVariable("idT") Integer idT, HttpSession session){
-        if(session.getAttribute("userName")!=null)
-            return "create_profile";
+        if(session.getAttribute("userName")==null)
+            return "redirect:/ToLogin";
         else
             session.setAttribute("userId",1);
         Integer idF=(Integer) session.getAttribute("userId");
@@ -38,11 +38,12 @@ public class RelationController {
 
         return "redirect:/ToProfile/"+idT;
     }
-    @RequestMapping("/ajaxtest")
+    @RequestMapping("/isliked")
     @ResponseBody
-    public String ajaxtest(){
+    public Boolean isliked(){
+        Boolean isLike=true;
 
-        return "wyTest";
+        return isLike;
 
     }
 }
