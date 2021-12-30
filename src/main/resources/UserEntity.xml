@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.example.j2ee_project.Model.UserEntity">
+        <table name="user" schema="j2eeproject" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id"/>
+            </id>
+            <basic name="userName">
+                <column name="userName"/>
+            </basic>
+            <basic name="password">
+                <column name="password"/>
+            </basic>
+            <basic name="email">
+                <column name="email"/>
+            </basic>
+
+        </attributes>
+    </entity>
+</entity-mappings>
