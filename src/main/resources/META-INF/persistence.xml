@@ -7,9 +7,9 @@
     <mapping-file>ProfileEntity.xml</mapping-file>
     <mapping-file>RelationEntity.xml</mapping-file>
     <mapping-file>UserEntity.xml</mapping-file>
-    <class>Model.ProfileEntity</class>
-    <class>Model.RelationEntity</class>
-    <class>Model.UserEntity</class>
+    <class>com.example.j2ee_project.Model.ProfileEntity</class>
+    <class>com.example.j2ee_project.Model.RelationEntity</class>
+    <class>com.example.j2ee_project.Model.UserEntity</class>
 
 
     <properties>
