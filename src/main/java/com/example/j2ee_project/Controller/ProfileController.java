@@ -93,8 +93,8 @@ public class ProfileController {
         condition.setAgeT(ageT);
         condition.setStatus(Status);
         System.out.println(condition);
-        int i=6;
-        while (i>0)
+        int i=0;
+        while (i<6)
         {   ProfileEntity pro=new ProfileEntity();
             pro.setIdProfile(i);
             pro.setName("000"+i);
@@ -106,7 +106,7 @@ public class ProfileController {
             pro.setCity("paris"+i);
             pro.setMaritalStatus("Single"+i);
             profileEntities.add(pro);
-            i--;
+            i++;
         }
 
         ModelAndView mav=new ModelAndView();
@@ -118,8 +118,8 @@ public class ProfileController {
     @RequestMapping("/ToProfile/{id}")
     public ModelAndView ToProfile(@PathVariable("id") Integer id){
         List<ProfileEntity> profileEntities= new ArrayList<ProfileEntity>();
-        int i=6;
-        while (i>0)
+        int i=0;
+        while (i<6)
         {   ProfileEntity pro=new ProfileEntity();
             pro.setIdProfile(i);
             pro.setName("000"+i);
@@ -131,10 +131,10 @@ public class ProfileController {
             pro.setCity("paris"+i);
             pro.setMaritalStatus("Single"+i);
             profileEntities.add(pro);
-            i--;
+            i++;
         }
         ModelAndView mav=new ModelAndView();
-        mav.addObject("profile",profileEntities.get(id-1));
+        mav.addObject("profile",profileEntities.get(id));
         mav.setViewName("view_profile");
 
         return mav;
