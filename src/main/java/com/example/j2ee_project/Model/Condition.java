@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 
 
 public class Condition {
-    private String Gender;
-    private String locate;
-    private int ageF;
-    private int ageT;
-    private String Status;
+    private String Gender;//Sex
+    private String locate;//配对位置
+    private int ageF;//年龄下限
+    private int ageT;//年龄上限
+    private String Status;//单身，未婚啥的
 
     public String getGender() {
         return Gender;
