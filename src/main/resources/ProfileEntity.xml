@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.example.j2ee_project.Model.ProfileEntity">
+        <table name="profile" schema="j2eeproject" catalog=""/>
+        <attributes>
+            <id name="idProfile">
+                <column name="idProfile"/>
+            </id>
+            <basic name="name">
+                <column name="Name"/>
+            </basic>
+            <basic name="age">
+                <column name="Age"/>
+            </basic>
+            <basic name="weight">
+                <column name="Weight"/>
+            </basic>
+            <basic name="height">
+                <column name="Height"/>
+            </basic>
+            <basic name="education">
+                <column name="Education"/>
+            </basic>
+            <basic name="introduction">
+                <column name="Introduction"/>
+            </basic>
+            <basic name="maritalStatus">
+                <column name="MaritalStatus"/>
+            </basic>
+            <basic name="city">
+                <column name="City"/>
+            </basic>
+            <basic name="photoPath">
+                <column name="photoPath"/>
+            </basic>
+            <basic name="gender">
+                <column name="gender"/>
+            </basic>
+
+        </attributes>
+    </entity>
+</entity-mappings>

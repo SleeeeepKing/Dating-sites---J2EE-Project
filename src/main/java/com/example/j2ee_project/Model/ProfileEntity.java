@@ -1,9 +1,6 @@
 package com.example.j2ee_project.Model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.Objects;
 
 @Entity
