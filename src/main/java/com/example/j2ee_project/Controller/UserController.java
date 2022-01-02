@@ -36,9 +36,11 @@ public class UserController {
     @RequestMapping("/Register")
     public String Register(UserEntity userEntity,HttpSession session){
 
-
+        int id=userService.register(userEntity);
         session.setAttribute("userName",userEntity.getUserName());
+        session.setAttribute("UserId",id);
         session.setAttribute("login",true);
+        session.setAttribute("hasPro",false);
 
         return "redirect:/Home";
     }
@@ -46,7 +48,8 @@ public class UserController {
     public String Logout( HttpSession session){
             session.removeAttribute("login");
             session.removeAttribute("userName");
-        session.setAttribute("hasPro",false);
+            session.removeAttribute("UserId");
+            session.setAttribute("hasPro",false);
         return "redirect:/Home";
     }
 
