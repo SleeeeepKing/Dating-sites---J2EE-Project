@@ -93,6 +93,7 @@
       <h3>Millions of verified Members</h3>
       <a th:unless="${session.hasPro}" th:href="@{/ToCreateProfile}" class="hvr-shutter-out-horizontal">Create your Profile</a>
 		<a th:if="${session.hasPro}" th:href="@{/ToModifierProfile}" class="hvr-shutter-out-horizontal">Modify your Profile</a>
+		<a th:if="${session.hasPro}" th:href="@{/deleteProfile}" class="hvr-shutter-out-horizontal">Delete your Profile</a>
     </div>
   </div>
   <div class="profile_search">
