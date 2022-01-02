@@ -13,7 +13,9 @@ public class ProfileService {
     //autowired ProfileDao,RelationDao
     public List<ProfileEntity> SearchByCondition(Condition condition,int id){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
-        // 根据条件返回列表，condition所有空值为任意匹配
+        // 根据条件返回列表，condition所有空值为任意匹配,
+        // 如果id不为0，根据id获取该用户的关注列表，联合RelationService.searchbyidT
+        //   在结果列表中删除所有已关注用户资料
         return profileEntities;
     }
 
@@ -32,9 +34,10 @@ public class ProfileService {
         return true;
     }
 
-    public List<ProfileEntity> getProfile(int id){
+    public List<ProfileEntity> getProfile(int id,boolean self){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
-        // 根据用户id 联合RelationService.searchbyidT，获得关注用户列表
+        // self 为假，查询id关注的用户列表，根据用户id 联合RelationService.searchbyidT，获得关注用户列表
+        // self 为真则查询id对应的用户资料，一个
         return  profileEntities;
     }
 

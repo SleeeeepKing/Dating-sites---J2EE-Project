@@ -1,6 +1,8 @@
 package com.example.j2ee_project.Model;
 
 
+import javax.persistence.Entity;
+
 
 public class Condition {
     private String Gender;

@@ -4,20 +4,14 @@ import com.example.j2ee_project.Model.Condition;
 import com.example.j2ee_project.Model.ProfileEntity;
 import com.example.j2ee_project.Service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +23,12 @@ public class ProfileController {
     public String upload(MultipartFile photo, HttpSession session) throws IOException {
         String fileName=photo.getOriginalFilename();
         ServletContext servletContext=session.getServletContext();
-        System.out.println("files name"+fileName);
+        //System.out.println("files name"+fileName);
         String photoPath=servletContext.getRealPath("photo");
 
 
         String finalPath=photoPath+File.separator+fileName;
-        System.out.println("finalPath name"+finalPath);
+        //System.out.println("finalPath name"+finalPath);
         photo.transferTo(new File(finalPath));
         session.setAttribute("photoName",fileName);
         return "redirect:/ToCreateProfile";
@@ -70,15 +64,8 @@ public class ProfileController {
 
     @RequestMapping("/ToModifierProfile")
     public ModelAndView ModifierProfile(HttpSession session){
-        ProfileEntity profileEntity=new ProfileEntity();
+        ProfileEntity profileEntity=profileService.getProfile((int)session.getAttribute("UserId"),true).get(0);
 
-        profileEntity.setName("zd");
-        profileEntity.setCity("Nice");
-        profileEntity.setHeight(123);
-        profileEntity.setWeight(50.0);
-        profileEntity.setAge(25);
-        profileEntity.setEducation("sqdfqsdf");
-        profileEntity.setIntroduction("sqdfqsdfzefqsdf");
         session.setAttribute("isModify",true);
         ModelAndView mav=new ModelAndView();
         mav.addObject(profileEntity);
@@ -95,11 +82,6 @@ public class ProfileController {
                                         @RequestParam(value = "ageT",required = false,defaultValue = "0") Integer ageT,
                                         @RequestParam(value = "Status",required = false) String Status){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
-       // if(session.getAttribute("Interestedlist")==true)
-         //  profileEntities=ProfileService.getProfile();
-      //  else
-        //    profileEntities=ProfileService.SearchByConditions(condition);
-
         Condition condition=new Condition();
         condition.setGender(Gender);
         condition.setLocate(locate);
@@ -107,21 +89,18 @@ public class ProfileController {
         condition.setAgeT(ageT);
         condition.setStatus(Status);
         System.out.println(condition);
-        int i=0;
-        while (i<6)
-        {   ProfileEntity pro=new ProfileEntity();
-            pro.setIdProfile(i);
-            pro.setName("000"+i);
-            pro.setAge(i+20);
-            pro.setHeight(160+i);
-            pro.setEducation("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            pro.setIntroduction("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            pro.setPhotoPath("images/default.png");
-            pro.setCity("paris"+i);
-            pro.setMaritalStatus("Single"+i);
-            profileEntities.add(pro);
-            i++;
-        }
+       if(session.getAttribute("InterestedList")!=null){
+           profileEntities=profileService.getProfile((int)session.getAttribute("UserId"),false);
+           session.removeAttribute("InterestedList");
+       }
+        else{
+            if(session.getAttribute("UserId")!=null)
+                profileEntities=profileService.SearchByCondition(condition,(int)session.getAttribute("UserId"));
+            else
+            {
+                profileEntities=profileService.SearchByCondition(condition,0);
+
+            }}
 
         ModelAndView mav=new ModelAndView();
         mav.addObject("profileEntities",profileEntities);
@@ -131,24 +110,9 @@ public class ProfileController {
     }
     @RequestMapping("/ToProfile/{id}")
     public ModelAndView ToProfile(@PathVariable("id") Integer id){
-        List<ProfileEntity> profileEntities= new ArrayList<ProfileEntity>();
-        int i=0;
-        while (i<6)
-        {   ProfileEntity pro=new ProfileEntity();
-            pro.setIdProfile(i);
-            pro.setName("000"+i);
-            pro.setAge(i+20);
-            pro.setHeight(160+i);
-            pro.setEducation("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            pro.setIntroduction("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-            pro.setPhotoPath("images/default.png");
-            pro.setCity("paris"+i);
-            pro.setMaritalStatus("Single"+i);
-            profileEntities.add(pro);
-            i++;
-        }
+        ProfileEntity profileEntity=profileService.getProfile(id,true).get(0);
         ModelAndView mav=new ModelAndView();
-        mav.addObject("profile",profileEntities.get(id));
+        mav.addObject("profile",profileEntity);
         mav.setViewName("view_profile");
 
         return mav;
