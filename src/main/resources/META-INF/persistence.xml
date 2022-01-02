@@ -4,16 +4,18 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
   <persistence-unit name="default">
-
     <class>com.example.j2ee_project.Model.ProfileEntity</class>
     <class>com.example.j2ee_project.Model.RelationEntity</class>
     <class>com.example.j2ee_project.Model.UserEntity</class>
+
+
     <properties>
-    <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/j2eeproject"/>
-    <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-    <property name="hibernate.connection.username" value="root"/>
-    <property name="hibernate.connection.password" value="eisti0001"/>
-    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/j2eeproject"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.password" value="eisti0001"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
     </properties>
   </persistence-unit>
 </persistence>

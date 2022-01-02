@@ -2,6 +2,8 @@ package com.example.j2ee_project.Controller;
 
 import com.example.j2ee_project.Model.Condition;
 import com.example.j2ee_project.Model.ProfileEntity;
+import com.example.j2ee_project.Service.ProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -22,7 +24,7 @@ import java.util.List;
 
 @Controller
 public class ProfileController {
-
+    @Autowired private ProfileService profileService;
     @RequestMapping("/uploadPhoto")
     public String upload(MultipartFile photo, HttpSession session) throws IOException {
         String fileName=photo.getOriginalFilename();
@@ -51,9 +53,21 @@ public class ProfileController {
         else
             profileEntity.setPhotoPath("images/default.png");
         System.out.println("Pro-info"+profileEntity);
+        if((boolean)session.getAttribute("hasPro"))
+            profileService.Update(profileEntity);
+        else
+            profileService.creatProfile(profileEntity);
+        session.setAttribute("hasPro",true);
         //将前端获取的资料对象，新建或保存，取决于session.hasPro
-        return "index";
+        return "redirect:/Home";
     }
+    @RequestMapping("/deleteProfile")
+    public String deleteProfile(HttpSession session){
+        profileService.deleteProfile((int)session.getAttribute("Userid"));
+        session.setAttribute("hasPro",false);
+        return "redirect:/Home";
+    }
+
     @RequestMapping("/ToModifierProfile")
     public ModelAndView ModifierProfile(HttpSession session){
         ProfileEntity profileEntity=new ProfileEntity();
@@ -81,7 +95,7 @@ public class ProfileController {
                                         @RequestParam(value = "ageT",required = false,defaultValue = "0") Integer ageT,
                                         @RequestParam(value = "Status",required = false) String Status){
         List<ProfileEntity> profileEntities=new ArrayList<ProfileEntity>();
-       // if(session.getAttribute("Interestedlist")!=null)
+       // if(session.getAttribute("Interestedlist")==true)
          //  profileEntities=ProfileService.getProfile();
       //  else
         //    profileEntities=ProfileService.SearchByConditions(condition);

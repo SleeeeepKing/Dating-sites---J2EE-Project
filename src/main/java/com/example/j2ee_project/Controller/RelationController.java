@@ -15,13 +15,14 @@ public class RelationController {
         if(session.getAttribute("userName")==null)
             return "redirect:/ToLogin";
         else {
-            //list searchbyidF(id)
-            //session.setAttribute(Interestedlist，List)
-            //session.setAttribute(by
 
-        }
+            //session.setAttribute(Interestedlist，true)
+
+
+
 
         return "redirect:/requestProList";
+        }
     }
     @RequestMapping("/changeRelation/{idT}")
     public String addRelation(@PathVariable("idT") Integer idT, HttpSession session){

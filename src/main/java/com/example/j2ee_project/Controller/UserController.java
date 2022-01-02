@@ -1,6 +1,9 @@
 package com.example.j2ee_project.Controller;
 
 import com.example.j2ee_project.Model.UserEntity;
+import com.example.j2ee_project.Service.ProfileService;
+import com.example.j2ee_project.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,18 +11,21 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
-
+    @Autowired private UserService userService;
+    @Autowired private ProfileService profileService;
     @RequestMapping("/Login")
     public String Login(UserEntity userEntity, HttpSession session){
 
-        UserEntity userI=new UserEntity();
-        userI.setUserName("Dusan");
-        userI.setPassword("123");
+        int id=userService.login(userEntity);
         System.out.println(userEntity);
-        if(userEntity.getPassword().equals(userI.getPassword())){
+        if(id!=0){
             session.setAttribute("userName",userEntity.getUserName());
+            session.setAttribute("UserId",id);
             session.setAttribute("login",true);
+            if(profileService.hasProfile(id))
         session.setAttribute("hasPro",true);
+            else
+                session.setAttribute("hasPro",false);
         //调用service判断是否有资料来决定该值
             }
 
